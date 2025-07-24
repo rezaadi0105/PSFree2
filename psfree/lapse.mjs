@@ -1532,7 +1532,7 @@ function make_kernel_arw(pktopts_sds, dirty_sd, k100_addr, kernel_addr, sds) {
 
 // FUNCTIONS FOR STAGE: PATCH KERNEL
 
-async function get_binary(url) {
+async function get_patches(url) {
   const response = await fetch(url);
   if (!response.ok) {
     throw Error(`network response was not OK, status: ${response.status}\nfailed to fetch: ${url}`);
@@ -1576,8 +1576,10 @@ async function patch_kernel(kbase, kmem, p_ucred, restore_info) {
   // cr_sceCaps[1] // 0x800000000000ff00
   kmem.write64(p_ucred.add(0x68), -1); // 0xffffffffffffffff
 
-  const buf = await get_binary(patch_elf_loc);
-  const patches = new View1(buf);
+  const buf = await get_patches(patch_elf_loc);
+  // FIXME handle .bss segment properly
+  // assume start of loadable segments is at offset 0x1000
+  const patches = new View1(await buf, 0x1000); 
   let map_size = patches.size;
   const max_size = 0x10000000;
   if (map_size > max_size) {

@@ -7,15 +7,15 @@ CFLAGS = -O3 -std=gnu11 -Wno-int-conversion -masm=intel -nostartfiles -fcf-prote
 .PHONY: all
 ALL_SOURCES = $(TARGET_VERSIONS:%=%.c)
 ALL_OBJECTS = $(TARGET_VERSIONS:%=%.o)
-ALL_BINS = $(TARGET_VERSIONS:%=%.bin)
+ALL_ELF = $(TARGET_VERSIONS:%=%.elf)
 
 all: $(ALL_BINS)
 
 %.bin: %.o
 	$(CC) $< -o $*.elf $(CFLAGS)
 	$(OBJCOPY) -O binary --only-section=.text $*.elf $@
-	-rm -f $*.elf
+	-rm -f $*.bin
 
 .PHONY: clean
 clean:
-	-rm -f $(ALL_OBJECTS) $(ALL_BINS)
+	-rm -f $(ALL_OBJECTS) $(ALL_ELF)
