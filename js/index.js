@@ -125,7 +125,6 @@ function CheckFW() {
       document.getElementById('PS4FW').textContent = `PS4 FW: ${fwVersion} | Compatible`;
       document.getElementById('PS4FW').style.color = 'green';
       ps4fw = fwVersion.replace('.', '');
-      document.getElementById('install-psfrf').style.display = 'flex';
       if (ps4fw === '903' || ps4fw === '960') {
         document.getElementById('gameb').style.display = 'none';
       }
