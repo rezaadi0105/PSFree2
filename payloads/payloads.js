@@ -137,19 +137,19 @@ export function load_EnableUpdates(){
 export function load_ExitIDU(){
     Loadpayloadlocal("./payloads/Bins/Tools/exit-idu.bin");
 }
-  
+
 export function load_FTP(){
     Loadpayloadlocal("./payloads/Bins/Tools/ftp.bin");
 }
-  
+
 export function load_HistoryBlocker(){
     Loadpayloadlocal("./payloads/Bins/Tools/history-blocker.bin");
 }
-  
+
 export function load_RIFRenamer(){
     Loadpayloadlocal("./payloads/Bins/Tools/rif-renamer.bin");
 }
-  
+
 // export function load_Orbis(){
 //     Loadpayloadlocal("./payloads/Bins/Tools/Orbis-Toolbox-900.bin");
 // }
